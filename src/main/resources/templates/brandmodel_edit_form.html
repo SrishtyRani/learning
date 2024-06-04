@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+    <h2>Edit Model</h2>
+    
+    <form method="post" th:action="@{'/admin/brandmodels/' + ${brandModels.id} + '/edit'}">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:field="*{brandModels.name}">
+    </div>
+    
+    <div>
+        <label for=" ParentBrand">Parent Category:</label>
+        <select id=" ParentBrand" name=" ParentBrandId" th:field="*{brandModels. ParentBrand.id}">
+            <option value="">Select Parent Category</option>
+            <th:block th:each=": ${Brand}">
+                <option th:value="${Brand.id}" th:text="${Brand.name}"></option>
+            </th:block>
+        </select>
+    </div>
+    
+    <div>
+        <label for="active">Active:</label>
+        <input type="checkbox" id="active" name="active" th:checked="*{subcategory.active}">
+    </div>
+    
+    <button type="submit">Save</button>
+</form>
+    
+</body>
+</html>

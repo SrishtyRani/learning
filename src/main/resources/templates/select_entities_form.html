@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Select Entities and Attributes</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+	<form id="myForm" method="post">
+
+		<select id="categorySelect" onchange="loadSubcategories()">
+			<option value="">Select Category</option>
+			<option th:each="category : ${categories}" th:value="${category.id}"
+				th:text="${category.name}"></option>
+		</select> <select id="subcategorySelect">
+			<option value="">Select Subcategory</option>
+		</select> <br> <br> <label>Select Entities:</label><br>
+		
+		 <input
+			type="checkbox" name="selectedEntities[]" value="BrandModel">
+		BrandModel<br> <input type="checkbox" name="selectedEntities[]"
+			value="Fuel"> Fuel<br> <input type="checkbox"
+			name="selectedEntities[]" value="Transmission"> Transmission<br>
+		<input type="checkbox" name="selectedEntities[]" value="Variant">
+		Variant<br> <br>
+
+		<button type="button" onclick="submitForm(event)">Submit</button>
+
+
+	</form>
+
+
+
+	<div class="card-block">
+		<div class="table-responsive">
+			<div class="table-content">
+				<div class="project-table">
+					<table id="e-product-list" class="table  ">
+						<thead>
+							<tr>
+
+
+								<th>SubCategory Name</th>
+								<th>Form Data</th>
+
+							</tr>
+						</thead>
+						<tbody>
+						
+						<tr th:each="formData : ${formDataList}">
+                <td>
+                    <span th:each="subcategory : ${subcategoryList}"
+                          th:if="${subcategory.id == formData.subcategory}"
+                          th:text="${subcategory.name}">
+                    </span>
+                </td>
+								<td th:text="${formData.checkedBoxes}"></td>
+
+								
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+
+	<script th:inline="javascript">
+function loadSubcategories() {
+    var categoryId = document.getElementById("categorySelect").value;
+    if (categoryId !== "") {
+        fetch('/admin/Formdata/api/subcategories/' + categoryId)
+            .then(response => response.json())
+            .then(data => {
+                var subcategorySelect = document.getElementById("subcategorySelect");
+                subcategorySelect.innerHTML = '<option value="">Select Subcategory</option>';
+                data.forEach(function(subcategory) {
+                    subcategorySelect.innerHTML += '<option value="' + subcategory.id + '">' + subcategory.name + '</option>';
+                });
+            })
+            .catch(error => console.error('Error fetching subcategories:', error));
+    } else {
+      
+        document.getElementById("subcategorySelect").innerHTML = '<option value="">Select Subcategory</option>';
+    }
+}
+</script>
+	<script th:inline="javascript">
+function submitForm(event) {
+    event.preventDefault(); 
+console.log('sadasdsa')
+     var form = document.getElementById("myForm");
+
+        
+       
+        var subcategory = document.getElementById("subcategorySelect").value;
+
+       
+        var checkedBoxes = [];
+        var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
+        checkboxes.forEach(function(checkbox) {
+        	checkedBoxes.push(checkbox.value);
+        });
+
+        var formData = {
+                subcategory: parseInt(subcategory), 
+                checkedBoxes: checkedBoxes.join(',')
+            };
+
+        $.ajax({
+            url: ' /admin/Formdata/submit-form',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            success: function(data, textStatus, xhr) {
+                if (xhr.status === 201) {
+                    console.log('Form submitted successfully');
+                } else {
+                    console.error('Form submission failed');
+                }
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                console.error('Error submitting form:', errorThrown);
+            }
+        });
+}
+</script>
+
+
+
+</body>
+</html>
+ 

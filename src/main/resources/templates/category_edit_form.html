@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit category</title>
+</head>
+<body>
+    <h2>Edit category</h2>
+    
+    <form method="post" th:action="@{'/admin/categories/' + ${category.id} + '/edit'}">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:field="*{category.name}">
+    </div>
+    
+    <div>
+        <label for="active">Active:</label>
+        <input type="checkbox" id="active" name="active" th:checked="*{category.active}">
+    </div>
+    
+    <button type="submit">Save</button>
+</form>
+    
+</body>
+</html>

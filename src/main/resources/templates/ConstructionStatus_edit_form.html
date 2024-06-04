@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adminty - Premium Admin Template by Colorlib</title>
+<link rel="icon" th:href="@{/files/assets/images/favicon.ico}"
+	type="image/x-icon">
+
+<link
+	th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:400,600,800}"
+	rel="stylesheet">
+<link rel="stylesheet"
+	th:href="@{/files/bower_components/bootstrap/dist/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	th:href="@{/files/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css}">
+<link rel="stylesheet"
+	th:href="@{/files/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css}">
+<link th:href="@{/files/assets/pages/jquery.filer/css/jquery.filer.css}"
+	rel="stylesheet" />
+<link
+	th:href="@{/files/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css}"
+	rel="stylesheet" />
+<link rel="stylesheet" th:href="@{/files/assets/css/component.css}">
+<link rel="stylesheet"
+	th:href="@{/files/assets/icon/themify-icons/themify-icons.css}">
+<link rel="stylesheet"
+	th:href="@{/files/assets/icon/icofont/css/icofont.css}">
+<link rel="stylesheet"
+	th:href="@{/files/assets/icon/feather/css/feather.css}">
+<link rel="stylesheet" th:href="@{/files/assets/css/style.css}">
+<link rel="stylesheet"
+	th:href="@{/files/assets/css/jquery.mCustomScrollbar.css}">
+</head>
+<body>
+
+	<div class="theme-loader">
+		<div class="ball-scale">
+			<div class="contain">
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+				<div class="ring">
+					<div class="frame"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="pcoded" class="pcoded">
+		<div class="pcoded-overlay-box"></div>
+		<div class="pcoded-container navbar-wrapper">
+			<div th:replace="header :: header"></div>
+			<div class="pcoded-main-container">
+				<div class="pcoded-wrapper">
+					<div th:replace="side :: sidebar"></div>
+					<div class="pcoded-content">
+						<div class="pcoded-inner-content">
+
+							<div class="main-body">
+								<div class="page-wrapper">
+
+									<div class="page-header">
+										<div class="row align-items-end">
+											<div class="col-lg-8">
+												<div class="page-header-title">
+													<div class="d-inline">
+														<h4>ConstructionStatus List</h4>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="page-header-breadcrumb">
+													<ul class="breadcrumb-title">
+														<li class="breadcrumb-item" style="float: left;"><a
+															href="../admin/home"> <i class="feather icon-home"></i>
+														</a></li>
+														<li class="breadcrumb-item" style="float: left;"><a
+															href="#!">E-Commerce</a></li>
+														<li class="breadcrumb-item" style="float: left;"><a
+															href="#!">ConstructionStatus List</a></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="page-body">
+										<div class="row">
+											<div class="col-sm-12">
+
+												<div class="card">
+													<div class="card-header">
+														<h5>Accessories edit List</h5>
+
+														<div class="card-block">
+															<div class="table-responsive">
+																<div class="table-content">
+																	<div class="project-table">
+																		<div class="container">
+																			<h2>Edit ConstructionStatus</h2>
+
+																			<form method="post"
+																				th:action="@{'/admin/construction/' + ${ConstructionStatus.id} + '/edit'}">
+																		
+																				<div class="form-group">
+																					<label for="name">Name:</label> <input type="text"
+																						id="name" name="name" class="form-control"
+																						th:field="*{ConstructionStatus.name}">
+																				</div>
+
+																				<div class="form-check">
+																					<input type="checkbox" id="active" name="active"
+																						class="form-check-input"
+																						th:checked="*{ConstructionStatus.active}">
+																					<label class="form-check-label" for="active">Active</label>
+																				</div>
+
+																				<button type="submit" class="btn btn-success">Save</button>
+																			</form>
+																		</div>
+
+																	</div>
+																</div>
+
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script th:src="@{/files/bower_components/jquery/dist/jquery.min.js}"></script>
+		<script th:src="@{/files/bower_components/jquery-ui/jquery-ui.min.js}"></script>
+		<script
+			th:src="@{/files/bower_components/popper.js/dist/umd/popper.min.js}"></script>
+		<script
+			th:src="@{/files/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+		<script
+			th:src="@{/files/bower_components/jquery-slimscroll/jquery.slimscroll.js}"></script>
+		<script th:src="@{/files/bower_components/modernizr/modernizr.js}"></script>
+		<script
+			th:src="@{/files/bower_components/modernizr/feature-detects/css-scrollbars.js}"></script>
+		<script
+			th:src="@{/files/bower_components/datatables.net/js/jquery.dataTables.min.js}"></script>
+		<script
+			th:src="@{/files/assets/pages/data-table/js/dataTables.bootstrap4.min.js}"></script>
+		<script
+			th:src="@{/files/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js}"></script>
+		<script
+			th:src="@{/files/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js}"></script>
+		<script
+			th:src="@{/files/assets/pages/jquery.filer/js/jquery.filer.min.js}"></script>
+		<script th:src="@{/files/assets/pages/filer/custom-filer.js}"></script>
+		<script
+			th:src="@{/files/assets/pages/filer/jquery.fileuploads.init.js}"></script>
+		<script th:src="@{/files/assets/js/classie.js}"></script>
+		<script th:src="@{/files/assets/js/modalEffects.js}"></script>
+		<script th:src="@{/files/assets/pages/product-list/product-list.js}"></script>
+		<script th:src="@{/files/bower_components/i18next/i18next.min.js}"></script>
+		<script
+			th:src="@{/files/bower_components/i18next-xhr-backend/i18nextXHRBackend.min.js}"></script>
+		<script
+			th:src="@{/files/bower_components/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js}"></script>
+		<script
+			th:src="@{/files/bower_components/jquery-i18next/jquery-i18next.min.js}"></script>
+		<script th:src="@{/files/assets/js/pcoded.min.js}"></script>
+		<script th:src="@{/files/assets/js/vartical-layout.min.js}"></script>
+		<script
+			th:src="@{/files/assets/js/jquery.mCustomScrollbar.concat.min.js}"></script>
+		<script th:src="@{/files/assets/js/script.js}"></script>

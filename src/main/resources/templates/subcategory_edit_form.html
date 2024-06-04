@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Subcategory</title>
+</head>
+<body>
+    <h2>Edit Subcategory</h2>
+    
+    <form method="post" th:action="@{'/admin/subcategories/' + ${subcategory.id} + '/edit'}">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:field="*{subcategory.name}">
+    </div>
+    
+    <div>
+        <label for="parentCategory">Parent Category:</label>
+        <select id="parentCategory" name="parentCategoryId" th:field="*{subcategory.parentCategory.id}">
+            <option value="">Select Parent Category</option>
+            <th:block th:each="category : ${categories}">
+                <option th:value="${category.id}" th:text="${category.name}"></option>
+            </th:block>
+        </select>
+    </div>
+    
+    <div>
+        <label for="active">Active:</label>
+        <input type="checkbox" id="active" name="active" th:checked="*{subcategory.active}">
+    </div>
+    
+    <button type="submit">Save</button>
+</form>
+    
+</body>
+</html>
